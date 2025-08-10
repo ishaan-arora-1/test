@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: mcp-deployment-notifier
+    env: node
+    plan: free
+    region: oregon
+    rootDir: .
+    buildCommand: npm install
+    startCommand: npm start
+    autoDeploy: true
+    healthCheckPath: /health
+    envVars:
+      - key: WEBHOOK_URL
+        value: https://us2.make.com/mcp/api/v1/u/56d64573-7d20-43f9-b0ce-3081631312e3/sse
+      - key: PORT
+        value: 8080
+      # Optional: set your own stable deployment id
+      # - key: DEPLOYMENT_ID
+      #   value: your-deployment-id
+      # Optional: set this after first deploy to reflect the public URL Render assigns
+      # - key: PUBLIC_URL
+      #   value: https://your-service.onrender.com 
